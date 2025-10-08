@@ -20,6 +20,8 @@ parts/
 sdist/
 var/
 wheels/
+pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
@@ -45,6 +47,7 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
+*.py,cover
 .hypothesis/
 .pytest_cache/
 
@@ -81,8 +84,19 @@ ipython_config.py
 # pyenv
 .python-version
 
-# celery beat schedule file
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow
+__pypackages__/
+
+# Celery stuff
 celerybeat-schedule
+celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
@@ -114,14 +128,17 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Django migrations (optional - comment out if you want to track them)
+# */migrations/*.py
+# !*/migrations/__init__.py
+
 # IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
-*~
 
-# OS files
+# OS generated files
 .DS_Store
 .DS_Store?
 ._*
@@ -130,5 +147,14 @@ dmypy.json
 ehthumbs.db
 Thumbs.db
 
-# Project specific
+# Custom files
 get-pip.py
+*.sql
+*.dump
+
+# Media files (if not needed in repo)
+media/
+
+# Static files (collected by Django)
+staticfiles/
+static/
