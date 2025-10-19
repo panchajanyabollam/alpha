@@ -5,6 +5,7 @@
 
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <!-- Hero Image Section -->
 <section>
     <img src="{% static 'images/home_hero.jpg' %}" alt="Hero Banner" class="img-fluid w-100 mb-5" style="object-fit: cover;">
@@ -83,4 +84,34 @@
         {% endif %}
     </div>
 </div>
+
+<!-- About Alpha -->
+ <div class="row" id="about-alpha"> 
+    <div class="col-12 col-md-6">
+        <p>
+            <img class="w-100" src="{% static 'images/silver.jpg' %}"/>
+        </p>
+    </div>
+    <div class="col-12 col-md-6 about-content">
+        
+        <h2 class="main-title" >ALPHA<sup>TM</sup></h2><br/>
+        
+        <h3 class="text-grey"><strong>92.5% PURE SILVER JEWELLERY</strong></h3><br/>
+        
+        <p>
+            It begins as raw, untamed metal, 92.5% pure silver fused with strength-giving alloys. Under roaring heat and relentless pressure, it’s melted to a white-hot blaze, poured into molds like liquid lightning, and hammered to perfection.
+        </p>
+        
+        <p>
+            Every strike of the craftsman’s tool is a test of endurance. Every polish burns away weakness until only raw power remains - a surface that gleams with a quiet, commanding shine.
+        </p>
+
+        <p>
+            Sterling silver is not fragile beauty. It is strength you can feel, weight you can wear, and character that grows sharper with time.
+        </p>
+
+        <p><strong>Metal made for men. Luxury built to last.</strong></p>
+    </div>
+ </div>
+
 {% endblock %}

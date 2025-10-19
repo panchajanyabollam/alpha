@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'Foda Display';
+  src: url('../fonts/FodaDisplay.woff2') format('woff2'),
+       url('../fonts/FodaDisplay.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* .main-title {
+  font-family: 'Foda Display', sans-serif;
+} */
+
+.main-title{
+  position: relative;
+}
+
+.main-title sup{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  position: absolute;
+  top: 0.8rem;
+}
+
+/*
+Landing Page Styles
+*/
+#about-alpha{
+  padding: 1rem;
+}
+
+#about-alpha div{
+  padding: 2rem;
+}
+
+#about-alpha .about-content{
+  align-content: center;
+  line-height: 1.8rem;
+  text-align: justify;
+}
+
+#about-alpha .text-grey{
+  color: #b4b4b4;
+}
