@@ -1,4 +1,5 @@
  <!-- Common Header -->
+  {% load static %}
 <header style="background-color: white;">
 
     <!-- Top Section with Logo and Login -->
@@ -18,7 +19,7 @@
                     {% if user.is_authenticated %}
                         <div class="dropdown">
                             <a class="btn btn-link text-dark p-2" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-person-circle fs-4"></i>
+                                <img src="{% static 'images/login button.png' %}" alt="Login Icon" class="rounded-circle" style="width: 32px; height: 32px;">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><span class="dropdown-item-text">Welcome, {{ user.username }}</span></li>
@@ -29,7 +30,7 @@
                         </div>
                     {% else %}
                         <a class="btn btn-link text-dark p-2" href="{% url 'admin:login' %}" title="Login">
-                            <i class="bi bi-person-circle fs-4"></i>
+                            <img src="{% static 'images/login button.png' %}" alt="Login Icon" class="rounded-circle" style="width: 32px; height: 32px;">
                         </a>
                     {% endif %}
                 </div>
