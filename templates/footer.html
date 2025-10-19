@@ -1,34 +1,52 @@
  <!-- Common Footer -->
-<footer class="bg-dark text-white py-3 mt-5">
-    <div class="d-flex justify-content-between px-4">
-        <div class="d-flex flex-column text-start">
-            <ul>
-                <li><a href="#">Site map</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Return & Refunds Policy</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-            </ul>
+  <style>
+    footer{
+        padding:3em;
+    }
+    footer .flex-row{
+        gap: 1em;
+    }
+
+    footer .wrapper-class{
+        padding:4em;
+    }
+
+    @media (max-width: 768px) {
+        footer{
+            padding:2em;
+        }
+        footer .wrapper-class{
+            padding:1em;
+        }
+    }
+
+  </style>
+<footer class="row bg-dark text-white">
+    <div class="wrapper-class d-flex justify-content-between">
+        <div class="d-flex flex-column text-start flex-row">
+            <a>Site map</a>
+            <a>Terms of Service</a>
+            <a>Return & Refunds Policy</a>
+            <a>Privacy Policy</a>
         </div>
-        <div class="d-flex flex-column text-end">
-            <a class="main-title" href"/">Alpha</a><br/>
-            <ul>
-                <li>+91 xxxxx xxxxx</li>
-                <li style="line-height:20px;">
-                    <strong>Address:</strong><br/>
-                    Gachibowli Circle, Telecom Nagar,<br/>
+        <div class="d-flex flex-column text-end flex-row">
+            <a style="font-family: 'Notable', serif; font-size: 2.5em; font-weight: 700;" href="/">
+                Alpha
+                <sup style="font-family: 'Roboto', serif; font-size: 0.4em; font-weight: 300; vertical-align: 0.7em;">TM</sup>
+            </a>
+            <a>+91 xxxxx xxxxx</a>
+            <a><strong>Address:</strong><br/>
+                 Gachibowli Circle, Telecom Nagar,<br/>
                     Hyderabad, Telangana 500032
-                </li>
-            </ul>
+            </a>
         </div>
     </div>
     <div class="d-flex flex-column justify-content-center text-center">
         <div class="insta-logo">
             <i class="bi bi-instagram"></i> Instagram
-            {% load static %}
-            {% comment %} <img src="{% static 'images/instagram.png' %}"/> {% endcomment %}
         </div>
         <div class="copy-right">
-            &copy; 2025 ALPHA JEWELLERS PROVATE LIMITED, ALL RIGHTS RESERVED
+            &copy; 2025 ALPHA JEWELLERS PRIVATE LIMITED, ALL RIGHTS RESERVED
         </div>
     </div>
 </footer>
