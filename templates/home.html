@@ -71,8 +71,8 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        border-radius: 12px;
-        padding: 20px 0px;
+        border-radius: 0.75em;
+        padding: 1.25em 0px;
     }
 
     .image-row {
@@ -99,6 +99,32 @@
             font-weight: 400;
             color: #999;
         }
+    }
+
+    #alpha-perks-section{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+        grid-template-rows: auto auto;
+        gap: 4em;
+        row-gap: 2em;
+        margin: auto;
+        position: relative;
+
+        & img{
+            max-width: 3em;
+            margin-bottom: 0.75em;
+        }
+    }
+
+    #alpha-perks-section .a { grid-column: 1; grid-row: 1; }
+    #alpha-perks-section .b { grid-column: 2; grid-row: 1; }
+    #alpha-perks-section .c { grid-column: 3; grid-row: 1; }
+
+    #alpha-perks-section .d { grid-column: 1 / span 2; grid-row: 2; justify-self: center; width: 60%; }
+    #alpha-perks-section .e { grid-column: 2 / span 2; grid-row: 2; justify-self: center; width: 60%; }
+
+    #alpha-perks-section .perk-item {
+        text-align: center;
     }
 </style>
 
@@ -199,5 +225,42 @@ is the sexiest thing a man can wear.<br>
         <p><strong>Metal made for men. Luxury built to last.</strong></p>
     </div>
  </div>
+
+ <section class="container-section mt-5 text-center" id="shop-with-confidence-section">
+    <h3 style="font-size: 1.5em; font-weight: 400;">SHOP WITH CONFIDENCE</h3>
+ </section>
+
+<!-- Alpha Perks Section -->
+ <section id="alpha-perks-section" class="container-section mt-5">
+    <div class="a perk-item">
+        <img src="{% static 'images/perk1.svg' %}" alt="Alpha Perks" class="img-fluid w-100">
+        <h4>7 Day Money Back</h4>
+        <p>No Questions Asked. Promise.</p>
+    </div>
+
+    <div class="b perk-item">
+        <img src="{% static 'images/perk3.svg' %}" alt="Alpha Perks" class="img-fluid w-100">
+        <h4>Secured Payment</h4>
+        <p>Pay according to your preferred method.</p>
+    </div>
+
+    <div class="c perk-item">
+        <img src="{% static 'images/perk5.svg' %}" alt="Alpha Perks" class="img-fluid w-100">
+        <h4>100% Certified</h4>
+        <p>Silver Purity is our Guarantee.</p>
+    </div>
+
+    <div class="d perk-item">
+        <img src="{% static 'images/perk2.svg' %}" alt="Alpha Perks" class="img-fluid w-100">
+        <h4>Tamper Proof Packaging</h4>
+        <p>Your order is safely shipped.</p>
+    </div>
+
+    <div class="e perk-item">
+        <img src="{% static 'images/perk4.svg' %}" alt="Alpha Perks" class="img-fluid w-100">
+        <h4>Silver - Best Asset Right Now</h4>
+        <p>Data proves.</p>
+    </div>
+ </section>
 
 {% endblock %}
