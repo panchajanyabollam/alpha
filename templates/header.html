@@ -19,7 +19,7 @@
                     {% if user.is_authenticated %}
                         <div class="dropdown">
                             <a class="btn btn-link text-dark p-2" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="{% static 'images/login button.png' %}" alt="Login Icon" class="rounded-circle" style="width: 32px; height: 32px;">
+                                <img src="{% static 'images/login button.png' %}" alt="Login Icon" class="rounded-circle" style="width: 32px; height: 32px;opacity: 0.49;">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><span class="dropdown-item-text">Welcome, {{ user.username }}</span></li>
@@ -30,7 +30,7 @@
                         </div>
                     {% else %}
                         <a class="btn btn-link text-dark p-2" href="{% url 'admin:login' %}" title="Login">
-                            <img src="{% static 'images/login button.png' %}" alt="Login Icon" class="rounded-circle" style="width: 32px; height: 32px;">
+                            <img src="{% static 'images/login button.png' %}" alt="Login Icon" class="rounded-circle" style="width: 32px; height: 32px;opacity: 0.49;">
                         </a>
                     {% endif %}
                 </div>
