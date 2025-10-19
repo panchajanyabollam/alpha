@@ -155,6 +155,3 @@ get-pip.py
 # Media files (if not needed in repo)
 media/
 
-# Static files (collected by Django)
-staticfiles/
-static/

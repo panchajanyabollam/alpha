@@ -1,8 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block content %}
+
+<!-- Hero Image Section -->
+<section>
+    <img src="{% static 'images/home_hero.jpg' %}" alt="Hero Banner" class="img-fluid w-100 mb-5" style="object-fit: cover;">
+    <h1>India’s First Exclusive Men’s Jewellery Brand.</h1>
+    
+</section>
 
 <!-- Hero Section -->
 <div class="jumbotron bg-primary text-white p-5 rounded mb-5">

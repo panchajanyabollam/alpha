@@ -1,0 +1,27 @@
+  .main-title{
+        font-size: 45px;
+        font-family: Sansita Swashed;
+    }
+    footer{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        color: #ffff;
+        line-height: 28px;
+    }
+    footer .insta-logo{
+        font-family: Sansita Swashed;
+        font-size: 16px;
+    }
+    footer ul{
+        list-style-type: none;
+        padding-left: 0rem;
+    }
+
+    footer a{
+        text-decoration: none;
+        color: white;
+    }
+
+    footer .copy-right{
+        font-size: 10px;
+    }
