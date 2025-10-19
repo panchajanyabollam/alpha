@@ -1,0 +1,168 @@
+{% extends "header.html" %}
+{% block main_content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<style>
+
+
+    #user-signup{
+        background-color: #f8f9fa;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    #user-signup .container{
+        max-width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        line-height: 2.2;
+        
+    }
+
+    #user-signup h3{
+        line-height: 0.2;
+    }
+
+    #user-signup .row{
+        margin-bottom: 15px;
+    }
+
+    #user-signup .logo-text{
+        font-family: 'Foda Display';
+        font-size: 45.86px;
+        color: #000000;
+        /* This adjusts the image itself to give it the "airy" feel */
+        filter: brightness(1.02) contrast(0.98);
+
+        /* This creates the subtle shadow to "lift" it off the page */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    #user-signup .trade-mark-sym{
+        font-size: 14px;
+    }
+
+    #user-signup .font-size-12{
+        font-size: 16px;
+    }
+
+    #user-signup .font-size-10{
+        font-size: 13.33px;
+    }
+
+    #user-signup .font-size-8{
+        font-size: 10.66px;
+    }
+
+    #user-signup .form-control{
+        border: 1px solid #000;
+    }
+
+    #user-signup a{
+        color: #000000;
+    }
+
+    .create-account-btn, .create-account-btn:hover, .create-account-btn:focus, .create-account-btn:active{
+        background-color: #08d471;
+        color: #fff;
+    }
+    
+    .create-account-btn{
+        border-radius: 10px;
+        border: none;
+        padding: 10px 20px;
+    }
+
+    @media screen and (max-width: 768px){
+        #user-signup{
+            padding: 10px;
+        }
+        #user-signup .container{
+            padding: 10px;
+        
+        }
+    }
+
+
+</style>
+<!-- Sign up page for the Customer -->
+<form id="user-signup" action="signup" method="post">
+    {% csrf_token %}
+    <div class="container mt-5">
+        <div class="row justify-content-cemter-row">
+            <div class="col-md-12 offset md-3 text-center">
+                <h3><span class="logo-text">ALPHA<sup class="trade-mark-sym">TM</sup></span></h3>
+                <p class="font-size-12">India’s First Exclusive Men’s Jewellery Brand.</p>
+            </div>
+            <div class="font-size-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="last_name">
+                            Last Name (Surname)
+                        </label>
+                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Doe">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="first_name">
+                            First Name
+                        </label>
+                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="John">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="phone_number">
+                            Phone Number
+                        </label>
+                        <input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="75488XXXXX">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email">
+                            Email ID
+                        </label>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="johndoeXXX@gmail.com">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="password">
+                            Create Password
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="repeat_password">
+                            Confirm Password
+                        </label>
+                        <input type="password" class="form-control" id="repeat_password" name="repeat_password">
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12 font-size-8">
+                        <input type="checkbox" id="terms_conditions" name="terms_conditions">
+                        <label for="terms_conditions">
+                            I agree to the <a href="/privacy-policy">Privacy Policy</a> & <a href="/terms-of-service">Terms of Service</a>
+                        </label>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-success create-account-btn">Create Account</button>
+                        <br/>
+                        <small class="font-size-8">Already have an account ? <a href="/signin">Sign in</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}
