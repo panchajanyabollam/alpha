@@ -18,13 +18,15 @@
     }
 
     @media (max-width: 768px) {
-        .navbar-section {
-            display: grid;
+        .navbar-nav {
+            overflow-x: auto;
+            white-space: scroll;
+            {% comment %} display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 1em;
             margin: 0px 0.5em;
             padding: 0.5em 0;
-            width: 100%;
+            width: 100%; {% endcomment %}
         }
     }
 
