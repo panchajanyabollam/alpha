@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Launch Sequence</title>
+    <style>
+        :root {
+            --rocket-animation-duration: 4000ms;
+            --confetti-duration: 5000ms;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #000010;
+        }
+
+        .launch-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            background-image: radial-gradient(circle at bottom, #101028, #000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- Stars --- */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: pulse-star infinite;
+        }
+
+        @keyframes pulse-star {
+            0%, 100% { opacity: 0.5; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        /* --- UI Elements --- */
+        .content-wrapper {
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        h1{
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px gold;
+            color: white;
+        }
+
+        #launchButton {
+            background: linear-gradient(90deg, #ffdd00, #ffa500);
+            border: none;
+            color: #000;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+            font-weight: 600;
+        }
+
+        #launchButton:hover {
+            transform: scale(1.1);
+            background: linear-gradient(90deg, #ffe866, #ffc107);
+        }
+
+
+        #launchButton.hidden {
+            opacity: 0;
+            transform: scale(0.5);
+            pointer-events: none;
+        }
+
+        #websiteName.hidden {
+            opacity: 0;
+            transform: scale(0.5);
+            pointer-events: none;
+        }
+
+        #successMessage {
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+        
+        #successMessage.visible {
+            animation: fade-in 1s ease-out forwards;
+        }
+
+        #successMessage h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            background-image: linear-gradient(to right, #fde047, #f472b6, #a855f7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        #successMessage p {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- Rocket --- */
+        #rocket {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            z-index: 10;
+            transform: translateX(-50%) translateY(100vh);
+            transition: transform var(--rocket-animation-duration) cubic-bezier(0.6, 0.04, 0.98, 0.335);
+        }
+
+        #rocket.launching {
+            transform: translateX(-50%) translateY(-120vh);
+        }
+        
+        .rocket-body {
+            position: relative;
+            width: 96px; /* w-24 */
+            height: 256px; /* h-64 */
+        }
+        
+        #rocket.launching .rocket-body {
+             animation: wobble 0.5s ease-in-out infinite;
+        }
+
+        .body {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 192px;
+            background-color: #e5e7eb;
+            border-radius: 9999px 9999px 0 0;
+            border-bottom: 4px solid #9ca3af;
+        }
+        .window {
+            position: absolute;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: #93c5fd;
+            border: 4px solid #9ca3af;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .window-glare {
+            width: 24px;
+            height: 24px;
+            background-color: #bfdbfe;
+            border-radius: 50%;
+            opacity: 0.75;
+        }
+        .nose-cone {
+            position: absolute;
+            top: 10px; /* Adjusted for cleaner look */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 60px solid #dc2626;
+        }
+        .fin {
+            position: absolute;
+            bottom: 0.5rem;
+            width: 24px;
+            height: 80px;
+            background-color: #dc2626;
+        }
+        .fin-left {
+            left: -16px;
+            border-top-left-radius: 0.75rem;
+            border-bottom-left-radius: 0.75rem;
+            transform: skewY(-15deg);
+        }
+        .fin-right {
+            right: -16px;
+            border-top-right-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+            transform: skewY(15deg);
+        }
+        .base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 32px;
+            background-color: #9ca3af;
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+
+        /* --- Flame & Smoke --- */
+        .flame-container {
+            position: absolute;
+            bottom: -96px; /* -bottom-24 */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 64px;
+            height: 128px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        #rocket.launching .flame-container {
+            opacity: 1;
+        }
+        .flame {
+            position: absolute;
+            bottom: 0;
+            border-bottom-left-radius: 50%;
+            border-bottom-right-radius: 50%;
+            animation: pulse-flame 0.8s infinite;
+        }
+        .flame-outer {
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(to top, #facc15, #f97316, transparent);
+        }
+        .flame-inner {
+            width: 66.66%;
+            height: 66.66%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-image: linear-gradient(to top, #fef08a, #facc15, transparent);
+            animation-duration: 0.5s;
+        }
+        
+        .smoke-container {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 192px; /* w-48 */
+            height: 192px; /* h-48 */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        #rocket.launching .smoke-container {
+            opacity: 1;
+        }
+        .smoke-puff {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(229, 231, 235, 0.6);
+            transform: scale(0);
+            opacity: 1;
+        }
+        #rocket.launching .smoke-puff {
+            transform: scale(2);
+            opacity: 0;
+            transition-property: transform, opacity;
+        }
+        .smoke-puff-1 {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition-duration: 2s;
+        }
+        .smoke-puff-2 {
+            width: 75%;
+            height: 75%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: rgba(243, 244, 246, 0.6);
+            transition-duration: 2.5s;
+        }
+        #rocket.launching .smoke-puff-2 {
+             transform: translate(-50%, -50%) scale(2.5);
+             opacity: 0;
+        }
+        
+        @keyframes wobble {
+          0%, 100% { transform: translateX(-1px) rotate(-1deg); }
+          50% { transform: translateX(1px) rotate(1deg); }
+        }
+        @keyframes pulse-flame {
+            0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+            50% { transform: scaleY(1.2) scaleX(1.1); opacity: 0.8; }
+        }
+        
+        /* --- Confetti --- */
+        #confetti-container {
+            position: absolute;
+            inset: 0;
+            z-index: 50;
+            pointer-events: none;
+            display: none; /* Initially hidden */
+        }
+        .confetti-particle {
+            position: absolute;
+            width: 0.75rem; /* w-3 */
+            height: 1.25rem; /* h-5 */
+            border-radius: 0.125rem; /* rounded-sm */
+            top: -20px; /* Start off-screen */
+            left: 50%;
+            opacity: 1;
+            transition-property: transform, opacity;
+            transition-timing-function: cubic-bezier(0.1, 0.5, 0.9, 0.2);
+        }
+
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+</head>
+<body>
+
+    <div class="launch-container">
+        <div class="stars-container" id="stars-container"></div>
+        <div id="confetti-container"></div>
+
+        <div class="content-wrapper">
+            <h1 id="websiteName">Alpha Jewelry</h1>
+
+            <button id="launchButton">Launch Website 🚀</button>
+            <div id="successMessage">
+                <h1>SUCCESSFULLY LAUNCHED!</h1>
+                <p>Redirecting you to the new website...</p>
+            </div>
+        </div>
+
+        <div id="rocket">
+            <div class="rocket-body">
+                <div class="body">
+                    <div class="window">
+                        <div class="window-glare"></div>
+                    </div>
+                </div>
+                <div class="nose-cone"></div>
+                <div class="fin fin-left"></div>
+                <div class="fin fin-right"></div>
+                <div class="base"></div>
+                <div class="flame-container">
+                    <div class="flame flame-outer"></div>
+                    <div class="flame flame-inner"></div>
+                </div>
+            </div>
+            
+            <div class="smoke-container">
+                <div class="smoke-puff smoke-puff-1"></div>
+                <div class="smoke-puff smoke-puff-2"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- CONFIGURATION ---
+        const ROCKET_ANIMATION_DURATION = 4000;
+        const CONFETTI_DURATION = 5000;
+        const REDIRECT_URL = 'http://localhost:8000/';
+        const NUM_STARS = 100;
+        const NUM_CONFETTI = 150;
+
+        // --- DOM ELEMENTS ---
+        const launchButton = document.getElementById('launchButton');
+        const rocket = document.getElementById('rocket');
+        const successMessage = document.getElementById('successMessage');
+        const starsContainer = document.getElementById('stars-container');
+        const confettiContainer = document.getElementById('confetti-container');
+        const websiteName = document.getElementById('websiteName');
+
+        // --- DYNAMIC ELEMENT CREATION ---
+        
+        // Create Stars
+        for (let i = 0; i < NUM_STARS; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            star.style.animationDuration = `${Math.random() * 2 + 2}s`;
+            starsContainer.appendChild(star);
+        }
+
+        // Create Confetti
+        const confettiColors = ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#6366f1', '#8b5cf6', '#ec4899'];
+        const confettiParticles = [];
+        for (let i = 0; i < NUM_CONFETTI; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'confetti-particle';
+            particle.style.backgroundColor = confettiColors[i % confettiColors.length];
+            
+            const duration = Math.random() * 2000 + 3000;
+            const delay = Math.random() * 4000;
+            const initialX = (Math.random() - 0.5) * window.innerWidth * 0.8;
+            const rotation = Math.random() * 720 - 360;
+
+            particle.style.transitionDuration = `${duration}ms`;
+            particle.style.transitionDelay = `${delay}ms`;
+            
+            confettiContainer.appendChild(particle);
+            
+            // Store final transform state to apply later
+            confettiParticles.push({
+                element: particle,
+                transform: `translate(${initialX}px, 120vh) rotate(${rotation}deg)`
+            });
+        }
+
+        // --- LAUNCH SEQUENCE ---
+        
+        let isLaunched = false;
+        launchButton.addEventListener('click', () => {
+            if (isLaunched) return;
+            isLaunched = true;
+
+            // 1. Hide the button
+            launchButton.classList.add('hidden');
+            websiteName.classList.add('hidden');
+
+            // 2. Launch the rocket after a short delay
+            setTimeout(() => {
+                rocket.classList.add('launching');
+            }, 500);
+
+            // 3. Trigger confetti and success message after rocket animation
+            setTimeout(() => {
+                confettiContainer.style.display = 'block';
+                successMessage.classList.add('visible');
+                
+                // Animate each confetti particle
+                confettiParticles.forEach(p => {
+                    p.element.style.transform = p.transform;
+                    p.element.style.opacity = '0';
+                });
+            }, ROCKET_ANIMATION_DURATION + 500);
+            
+            setTimeout(() => {
+                confetti({
+                particleCount: 300,
+                spread: 100,
+                origin: { y: 0.1 },
+                colors: ['#ffcc00', '#ffffff', '#ff6699', '#66ccff', '#ff9966']
+                });
+            },  ROCKET_ANIMATION_DURATION + 500);
+
+            // 4. Redirect to the website after confetti has fallen
+            setTimeout(() => {
+                window.location.href = REDIRECT_URL;
+            }, ROCKET_ANIMATION_DURATION + 500 + CONFETTI_DURATION);
+        });
+    });
+    </script>
+</body>
+</html>

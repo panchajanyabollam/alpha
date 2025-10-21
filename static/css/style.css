@@ -11,6 +11,11 @@
   font-family: 'Foda Display', sans-serif;
 } */
 
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
 .main-title{
   position: relative;
 }
