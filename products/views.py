@@ -37,3 +37,9 @@ def home_view(request):
         'categories': categories,
         'page_title': 'Welcome to Alpha Jewelry'
     })
+
+def launch(request):
+    """Launch page view"""
+    return render(request, 'launch.html', {
+        'page_title': 'Website Launch'
+    })
