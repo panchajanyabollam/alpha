@@ -48,3 +48,10 @@ def create_user(data):
         return {'status': True, 'message': 'Signup successful!'}
     except Exception as e:
         return {'status': False, 'message': f'An error occurred: {str(e)}'}
+
+
+def launch(request):
+    """Launch page view"""
+    return render(request, 'launch.html', {
+        'page_title': 'Website Launch'
+    })
