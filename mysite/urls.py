@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from products.views import home_view
+from core.views import home_view
 from users.views import launch, signup_view
 
 urlpatterns = [
@@ -25,5 +25,4 @@ urlpatterns = [
     path('signup', signup_view, name='signup'),
     path('', home_view, name='home'),
     path('launch/', launch, name='launch'),
-    path('products/', include('products.urls')),
 ]
